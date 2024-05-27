@@ -31,6 +31,16 @@ export default Blits.Component('Row', {
         rowAlpha: 0.2
     }
   },
+  hooks: {
+    focus() {
+      console.log("Focused !");
+        this.$trigger('focusIndex') // trigger a call essentially to focusIndex var for wacth code to kick off for first time entering this compoennt 
+        this.rowAlpha = 1
+    },
+    unfocus() {
+      this.rowAlpha = 0.2
+    }
+  },
   input: {
     left() {
        this.focusIndex = Math.max(this.focusIndex-1,0) // dont go past the first item in items list 
@@ -50,14 +60,4 @@ export default Blits.Component('Row', {
         }
     }
   },
-  hooks: {
-    focus() {
-      console.log("Focused !");
-        this.$trigger('focusIndex') // trigger a call essentially to focusIndex var for wacth code to kick off for first time entering this compoennt 
-        this.rowAlpha = 1
-    },
-    unfocus() {
-      this.rowAlpha = 0.2
-    }
-  }
 })
