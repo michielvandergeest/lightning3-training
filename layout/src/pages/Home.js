@@ -71,6 +71,7 @@ export default Blits.Component('Home', {
   },
   watch : {
     focused(value){
+      console.log(value);
       const focusedRow = this.select('row' + value)
 
       if (focusedRow && focusedRow.focus)  {

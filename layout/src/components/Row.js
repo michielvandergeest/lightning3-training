@@ -34,9 +34,12 @@ export default Blits.Component('Row', {
   input: {
     left() {
        this.focusIndex = Math.max(this.focusIndex-1,0) // dont go past the first item in items list 
+       if (this.focusIndex == 0) {
+        this.$emit('focusSidebar')
+       }
     },
     right() {
-        this.focusIndex = Math.min(this.focusIndex + 1, this.items.length - 1)
+        this.focusIndex = Math.min(this.focusIndex + 1, this.data.length - 1)
     }
   },
   watch: {

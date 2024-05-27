@@ -1,50 +1,43 @@
 import Blits from "@lightningjs/blits"
 
 export default Blits.Component('Item', {
-    // z index is relevant to this current component, highest precedence is 2 cause there are another 2 elements 
-    // defined in this template
+  //Shaders are WebGL thing not Lightning, with radius we can pass top, right,bottom, radi-->
     template: `
     <Element>
     	<Element
-    		w="280"
+    		w="300"
     		h="480"
     		x="$x"
     		y="250"
-    		z="2"
     		mount="{y:0.5}"
     		color="$color"
+    		:effects="[$shader('radius',{radius: 20})]"
+    		:scale="$focusScale"
     	>
+    		<Text />
     	</Element>
-    	<Element
-    		w="286"
-    		h="486"
-    		x="$x - 3"
-    		y="250"
-    		mount="{y:0.5}"
-    		color="#fff"
-    		:show="$active"
-    	></Element>
     </Element>
   `,
-  props: ['color', 'index'],
+  props: ['color', 'index', 'title', 'description'],
   state() {
     return {
-        active: false
+        focusScale: 1
     }
   },
   computed: {
     x() {
-        let padding = 15
+        let padding = 60
         let offset = 15
         return this.index * (padding + 280) + offset  
     }
   },
   hooks: {
     focus() {
-        this.active = true
+        this.focusScale = 1.1
+        this.$emit('mainContentChange', {title: this.title, description: this.description})
     },
     unfocus() {
-        this.active = false
+        this.focusScale = 1
     }
   },
   input: {
