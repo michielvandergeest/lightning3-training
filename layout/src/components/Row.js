@@ -28,7 +28,7 @@ export default Blits.Component('Row', {
   state() {
     return {
         focusIndex: 0,
-        rowAlpha: 0
+        rowAlpha: 0.2
     }
   },
   input: {
@@ -57,7 +57,7 @@ export default Blits.Component('Row', {
         this.rowAlpha = 1
     },
     unfocus() {
-      this.rowAlpha = 0
+      this.rowAlpha = 0.2
     }
   }
 })
