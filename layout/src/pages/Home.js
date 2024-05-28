@@ -7,24 +7,10 @@ export default Blits.Component('Home', {
     Row
   },
   template: `
-    <Element
-    	w="1920"
-    	h="1080"
-    	color="#1e293b"
-    >
-    	<Element
-    		ref="rowContainer"
-    		:y.transition="{value: $containerY, duration: 500}"
-    	>
-    		<Component
-    			:for="(row, index) in $rows"
-    			is="Row"
-    			key="$index"
-    			ref="row"
-    			y="$row.y"
-    			data="$row.data"
-    		/>
-    	</Element>
+    <Element w="1920" h="1080" color="#1e293b">
+      <Element ref="rowContainer" :y.transition="{value: $containerY, duration: 500}">
+        <Component :for="(row, index) in $rows" is="Row" key="$row.y" ref="row" y="$row.y" data="$row.data" />
+      </Element>
     </Element>
   `,
   state() {
@@ -66,7 +52,7 @@ export default Blits.Component('Home', {
   },
   hooks: {
     ready() {
-      this.$trigger('focused')
+      this.trigger('focused')
     }
   },
   watch : {
